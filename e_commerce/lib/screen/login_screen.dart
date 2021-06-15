@@ -1,4 +1,7 @@
+import 'package:e_commerce/screen/signin_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'forget_pwd_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   final Function(int) onChangedStep;
@@ -98,7 +101,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     : Icons.visibility_off,
                               ),
                             ),
-                            hintText: 'Mot de passe',
+                            hintText: 'Mot de passe (6 caract. mini.)',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                               borderSide: BorderSide(color: Colors.purple),
@@ -138,30 +141,36 @@ class _AuthScreenState extends State<AuthScreen> {
                       SizedBox(
                         height: 5.0,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          text: '\n'.toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: 'Pas de compte ?\n'.toUpperCase(),
-                            ),
-                            TextSpan(
-                              text: '\nJ’ai oublié mon mot de passe'
-                                  .toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold,
-                                //fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ],
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.purple),
                         ),
-                        textAlign: TextAlign.center,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ForgetPwdScreen()),
+                          );
+                        },
+                        child: Text('\nJ’ai oublié mon mot de passe'),
+                      ),
+                      SizedBox(
+                        height: 35.0,
+                      ),
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.purple),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SigninScreen()),
+                          );
+                        },
+                        child: Text('Pas de compte ?\n'.toUpperCase()),
                       ),
                     ],
                   ),
