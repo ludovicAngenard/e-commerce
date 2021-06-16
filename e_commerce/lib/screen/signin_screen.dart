@@ -119,6 +119,9 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                       TextFormField(
                         onChanged: (value) => setState(() => _password = value),
+                        validator: (value) => value.length < 6
+                            ? 'Entrez un Mot de Passe (6 caractères minimum)'
+                            : null,
                         obscureText: _isSecret,
                         decoration: InputDecoration(
                             suffixIcon: InkWell(
