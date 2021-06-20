@@ -1,10 +1,6 @@
-import 'package:e_commerce/screens/article.dart';
 import 'package:e_commerce/screens/connexion.dart';
 import 'package:e_commerce/screens/home.dart';
-import 'package:flutter/material.dart';
-
-import 'package:e_commerce/screens/connexion.dart';
-import 'package:e_commerce/screens/home.dart';
+import 'package:e_commerce/screens/panier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:e_commerce/screens/favoris.dart';
@@ -39,7 +35,7 @@ class _DestinationViewState extends State<DestinationView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('${widget.destination.title}'),
+        title: Text('Création Compte'),
         backgroundColor: widget.destination.color,
         actions: <Widget>[
           IconButton(
@@ -135,7 +131,7 @@ class _CreationCompteState extends State<CreationCompte>
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Connexion()),
+          MaterialPageRoute(builder: (context) => Panier()),
         );
         break;
       case 3:

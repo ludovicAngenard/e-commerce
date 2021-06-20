@@ -1,5 +1,6 @@
 import 'package:e_commerce/screens/connexion.dart';
 import 'package:e_commerce/screens/home.dart';
+import 'package:e_commerce/screens/panier.dart';
 import 'package:e_commerce/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -38,7 +39,7 @@ class _DestinationViewState extends State<DestinationView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('${widget.destination.title}'),
+        title: Text('Article'),
         backgroundColor: widget.destination.color,
         actions: <Widget>[
           IconButton(
@@ -133,7 +134,7 @@ class _ArticleState extends State<Article>
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Connexion()),
+          MaterialPageRoute(builder: (context) => Panier()),
         );
         break;
       case 3:
@@ -166,7 +167,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/luffy.jpg"),
+                image: AssetImage("asset/images/1.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -192,7 +193,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 200),
                   height:
-                      _view ? MediaQuery.of(context).size.height / 2 : 600.0,
+                      _view ? MediaQuery.of(context).size.height / 2.7 : 600.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(50.0),

@@ -1,6 +1,7 @@
 import 'package:e_commerce/screens/article.dart';
 import 'package:e_commerce/screens/connexion.dart';
 import 'package:e_commerce/screens/favoris.dart';
+import 'package:e_commerce/screens/panier.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -133,7 +134,7 @@ class _HomePageState extends State<HomePage>
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Connexion()),
+          MaterialPageRoute(builder: (context) => Panier()),
         );
         break;
       case 3:
@@ -272,113 +273,184 @@ class CollapsingList extends StatelessWidget {
                   );
                 },
               ),
-              Container(
-                height: 300.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/2.png'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+              GestureDetector(
+                  child: Container(
+                    height: 300.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/2.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ], //here
+                      color: Theme.of(context).primaryColor,
                     ),
-                  ], //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 150.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/3.png'),
-                    fit: BoxFit.fill,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 150.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/4.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/3.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/5.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/4.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/6.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/5.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/7.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/6.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/8.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/7.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/9.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/8.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-              Container(
-                height: 250.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('asset/images/10.png'),
-                    fit: BoxFit.fill,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/9.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
+              GestureDetector(
+                  child: Container(
+                    height: 250.0,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('asset/images/10.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(20)), //here
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Article()),
+                    );
+                  }),
             ],
           ),
         ),

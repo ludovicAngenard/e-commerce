@@ -1,5 +1,6 @@
 import 'package:e_commerce/screens/article.dart';
 import 'package:e_commerce/screens/home.dart';
+import 'package:e_commerce/screens/panier.dart';
 //import 'package:e_commerce/screen/forget_pwd_screen.dart';
 //import 'package:e_commerce/screen/signin_screen.dart';
 import 'package:flutter/material.dart';
