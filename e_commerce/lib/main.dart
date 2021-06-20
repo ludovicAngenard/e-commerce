@@ -1,6 +1,4 @@
-//import 'package:e_commerce/screen/delivery_screen.dart';
-//import 'package:e_commerce/screen/login_screen.dart';
-import 'package:e_commerce/screen/payment_screen.dart';
+import 'package:e_commerce/screens/home.dart';
 //import 'package:e_commerce/screen/forget_pwd_screen.dart';
 //import 'package:e_commerce/screen/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PaymentScreen(),
+      home: HomePage(),
     );
   }
 }
