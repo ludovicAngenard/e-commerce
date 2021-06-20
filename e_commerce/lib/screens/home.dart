@@ -1,3 +1,6 @@
+import 'package:e_commerce/screens/article.dart';
+import 'package:e_commerce/screens/login_screen.dart';
+import 'package:e_commerce/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -9,9 +12,9 @@ class Destination {
 }
 
 const List<Destination> allDestinations = <Destination>[
-  Destination('Home', Icons.home, Colors.teal),
-  Destination('Favoris', Icons.favorite, Colors.orange),
-  Destination('Panier', Icons.shopping_cart, Colors.cyan),
+  Destination('Home', Icons.home, Colors.blue),
+  Destination('Favoris', Icons.favorite, Colors.blue),
+  Destination('Panier', Icons.shopping_cart, Colors.blue),
   Destination('Compte', Icons.account_circle_outlined, Colors.blue)
 ];
 
@@ -44,20 +47,25 @@ class _DestinationViewState extends State<DestinationView> {
           ),
           IconButton(
             icon: Icon(
-              Icons.shopping_cart,
-              semanticLabel: 'panier',
+              Icons.account_circle_outlined,
+              semanticLabel: 'compte',
             ),
             onPressed: () {
-              print('Panier button');
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AuthScreen()),
+                  );
             },
           ),
         ],
       ),
       backgroundColor: widget.destination.color[0],
-      body: Column(children: [
-        Expanded(child: CategoryList()),
-        Expanded(child: CollapsingList())
-      ]),
+      body: Column(
+        children: [
+          Container(height: 50, child: Expanded(child: CategoryList())),
+          Expanded(child: CollapsingList())
+        ],
+      ),
     );
   }
 }
@@ -86,9 +94,12 @@ class _HomePageState extends State<HomePage>
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (int index) {
+          
           setState(() {
             _currentIndex = index;
           });
+
+          
         },
         items: allDestinations.map((Destination destination) {
           return BottomNavigationBarItem(
@@ -101,45 +112,83 @@ class _HomePageState extends State<HomePage>
   }
 }
 
-
-
 class CategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.all(8),
-      shrinkWrap: true,
-      
+      padding: const EdgeInsets.all(10),
       children: <Widget>[
         Container(
           width: 100,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Catégorie 1')),
+          child: Center(
+            child: Text(
+              'Categorie 1',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
         Container(
           width: 100,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Catégorie 2')),
+          child: Center(
+            child: Text(
+              'Categorie 2',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
         Container(
           width: 100,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Catégorie 3')),
+          child: Center(
+            child: Text(
+              'Categorie 3',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
         Container(
           width: 100,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Catégorie 4')),
+          child: Center(
+            child: Text(
+              'Categorie 4',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
         Container(
           width: 100,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Catégorie 5')),
+          child: Center(
+            child: Text(
+              'Categorie 5',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
         Container(
           width: 100,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Catégorie 6')),
+          child: Center(
+            child: Text(
+              'Categorie 6',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Container(
+          width: 100,
+          child: Center(
+            child: Text(
+              'Categorie 7',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Container(
+          width: 100,
+          child: Center(
+            child: Text(
+              'Categorie 8',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ],
     );
@@ -148,7 +197,6 @@ class CategoryList extends StatelessWidget {
 
 class CollapsingList extends StatelessWidget {
   Widget build(BuildContext context) {
-    
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
     final double itemWidth = size.width / 2;
@@ -157,97 +205,148 @@ class CollapsingList extends StatelessWidget {
         SliverPadding(
           padding: const EdgeInsets.all(8),
           sliver: SliverGrid.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 50,
-          crossAxisSpacing: 15,
-          childAspectRatio: (itemWidth / itemHeight),
-          children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('asset/images/1.png'),
-                  fit: BoxFit.fill,
+            crossAxisCount: 2,
+            mainAxisSpacing: 50,
+            crossAxisSpacing: 15,
+            childAspectRatio: (itemWidth / itemHeight),
+            children: <Widget>[
+              GestureDetector(
+                child: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('asset/images/1.png'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ], //here
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ArticleScreen()),
+                  );
+                },
+              ),
+              Container(
+                height: 300.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/2.png'),
+                    fit: BoxFit.fill,
                   ),
-                ], //here
-                color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ], //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 300.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+              Container(
+                height: 150.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/3.png'),
+                    fit: BoxFit.fill,
                   ),
-                ], //here
-                color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 150.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 150.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/4.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 150.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/5.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/6.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/7.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/8.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/9.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            Container(
-              height: 250.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)), //here
-                color: Theme.of(context).primaryColor,
+              Container(
+                height: 250.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/images/10.png'),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(20)), //here
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
         ),
       ],
     );
