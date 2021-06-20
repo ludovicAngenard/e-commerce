@@ -1,6 +1,6 @@
 import 'package:e_commerce/screens/article.dart';
-import 'package:e_commerce/screens/login_screen.dart';
-import 'package:e_commerce/screens/signin_screen.dart';
+import 'package:e_commerce/screens/connexion.dart';
+import 'package:e_commerce/screens/favoris.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -52,9 +52,9 @@ class _DestinationViewState extends State<DestinationView> {
             ),
             onPressed: () {
               Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AuthScreen()),
-                  );
+                context,
+                MaterialPageRoute(builder: (context) => Connexion()),
+              );
             },
           ),
         ],
@@ -78,6 +78,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with TickerProviderStateMixin<HomePage> {
   int _currentIndex = 0;
+  final List<Widget> _children = [];
 
   @override
   Widget build(BuildContext context) {
@@ -92,23 +93,56 @@ class _HomePageState extends State<HomePage>
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
         currentIndex: _currentIndex,
-        onTap: (int index) {
-          
-          setState(() {
-            _currentIndex = index;
-          });
-
-          
-        },
-        items: allDestinations.map((Destination destination) {
-          return BottomNavigationBarItem(
-              icon: Icon(destination.icon),
-              backgroundColor: destination.color,
-              label: (destination.title));
-        }).toList(),
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.favorite),
+            title: new Text('Favoris'),
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_basket), title: Text('Panier')),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.account_circle_outlined),
+            title: new Text('Compte'),
+          ),
+        ],
       ),
     );
+  }
+
+  void onTabTapped(int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Favoris()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Connexion()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Connexion()),
+        );
+        break;
+    }
   }
 }
 
@@ -234,7 +268,7 @@ class CollapsingList extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ArticleScreen()),
+                    MaterialPageRoute(builder: (context) => Article()),
                   );
                 },
               ),

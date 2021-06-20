@@ -1,11 +1,6 @@
-import 'package:e_commerce/screens/article.dart';
 import 'package:e_commerce/screens/connexion.dart';
-import 'package:e_commerce/screens/home.dart';
 import 'package:flutter/material.dart';
-
-import 'package:e_commerce/screens/connexion.dart';
 import 'package:e_commerce/screens/home.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:e_commerce/screens/favoris.dart';
 import 'dart:math' as math;
@@ -66,18 +61,18 @@ class _DestinationViewState extends State<DestinationView> {
         ],
       ),
       backgroundColor: widget.destination.color[0],
-      body: Container(child: SigninScreen()),
+      body: Container(child: PaymentScreen()),
     );
   }
 }
 
-class CreationCompte extends StatefulWidget {
+class CreditCard extends StatefulWidget {
   @override
-  _CreationCompteState createState() => _CreationCompteState();
+  _CreditCardState createState() => _CreditCardState();
 }
 
-class _CreationCompteState extends State<CreationCompte>
-    with TickerProviderStateMixin<CreationCompte> {
+class _CreditCardState extends State<CreditCard>
+    with TickerProviderStateMixin<CreditCard> {
   int _currentIndex = 0;
   final List<Widget> _children = [];
 
@@ -107,8 +102,7 @@ class _CreationCompteState extends State<CreationCompte>
             title: new Text('Favoris'),
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket),
-              title: Text('Panier')),
+              icon: Icon(Icons.shopping_basket), title: Text('Panier')),
           BottomNavigationBarItem(
             icon: new Icon(Icons.account_circle_outlined),
             title: new Text('Compte'),
@@ -148,183 +142,176 @@ class _CreationCompteState extends State<CreationCompte>
   }
 }
 
-
-
-class SigninScreen extends StatefulWidget {
+class PaymentScreen extends StatefulWidget {
   final Function(int) onChangedStep;
 
-  const SigninScreen({
+  const PaymentScreen({
     Key key,
     this.onChangedStep,
   }) : super(key: key);
 
   @override
-  _SigninScreenState createState() => _SigninScreenState();
+  _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _PaymentScreenState extends State<PaymentScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final RegExp emailRegex = RegExp(r"[a-z0-9\._-]+@[a-z0-9\._-]+\.[a-z]+");
 
-  String _nom = '';
-  String _prenom = '';
-  String _email = '';
+  String _orderName = '';
+  String _cardNumber = '';
+  String _cardExpiryDate = '';
+  String _cvcCode = '';
+
   bool _isSecret = true;
-  String _password = '';
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: 0.0,
+          elevation: 0,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          title: Text(
+            'INFORMATIONS DE PAIEMENT',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.black,
+            onPressed: () {},
+          ),
+        ),
         body: Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: TextSpan(
-                    text: 'Créer\n'.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'un Compte'.toUpperCase(),
-                        style: TextStyle(
-                          color: Colors.purple,
-                          fontWeight: FontWeight.bold,
-                          //fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
-                  height: 44.0,
+                  height: 1.0,
                 ),
                 Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'asset/images/nicoCard.png',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      
                       SizedBox(
-                        height: 8.0,
+                        height: 44.0,
                       ),
                       TextFormField(
-                        onChanged: (value) => setState(() => _nom = value),
+                        onChanged: (value) =>
+                            setState(() => _orderName = value),
                         decoration: InputDecoration(
-                            hintText: 'Nom',
+                            hintText: 'Carte order name',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.purple),
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(color: Colors.black),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.blueGrey),
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(color: Colors.black),
                             )),
                       ),
                       SizedBox(
                         height: 8.0,
                       ),
                       TextFormField(
-                        onChanged: (value) => setState(() => _prenom = value),
-                        decoration: InputDecoration(
-                            hintText: 'Prénom',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.purple),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            )),
-                      ),
-                      SizedBox(
-                        height: 8.0,
-                      ),
-                      TextFormField(
-                        onChanged: (value) => setState(() => _email = value),
-                        validator: (value) =>
-                            value.isEmpty || !emailRegex.hasMatch(value)
-                                ? 'Entrez une adresse valide svp !'
-                                : null,
-                        decoration: InputDecoration(
-                            hintText: 'Email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.purple),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            )),
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      TextFormField(
-                        onChanged: (value) => setState(() => _password = value),
+                        onChanged: (value) =>
+                            setState(() => _cardNumber = value),
+                        validator: (value) => value.length == 16
+                            ? 'Entrez un numéro de carte valide (16 chiffres)'
+                            : null,
                         obscureText: _isSecret,
                         decoration: InputDecoration(
-                            suffixIcon: InkWell(
-                              onTap: () =>
-                                  setState(() => _isSecret = !_isSecret),
-                              child: Icon(
-                                !_isSecret
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                            ),
-                            hintText: 'Mot de passe',
+                            hintText: 'Carte number',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.purple),
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(color: Colors.black),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                              borderSide: BorderSide(color: Colors.purple),
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(color: Colors.black),
                             )),
                       ),
                       SizedBox(
-                        height: 16.0,
+                        height: 8.0,
+                      ),
+                      Row(children: [
+                        Expanded(
+                          child: TextFormField(
+                            onChanged: (value) =>
+                                setState(() => _cardExpiryDate = value),
+                            decoration: InputDecoration(
+                                hintText: 'Expiry Date',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black),
+                                )),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            onChanged: (value) =>
+                                setState(() => _cvcCode = value),
+                            decoration: InputDecoration(
+                                hintText: 'Code CVC',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(color: Colors.black),
+                                )),
+                          ),
+                        )
+                      ]),
+                      SizedBox(
+                        height: 20.0,
                       ),
                       RaisedButton(
                         padding: EdgeInsets.symmetric(
                           vertical: 16.0,
                         ),
-                        color: Colors.purple,
+                        color: Colors.black,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        onPressed: !emailRegex.hasMatch(_email)
+                        onPressed: _cardNumber.length == 16
                             ? null
                             : () {
                                 if (_formKey.currentState.validate()) {
-                                  print(_email);
+                                  print(_orderName);
+                                  print(_cardNumber);
+                                  print(_cardExpiryDate);
+                                  print(_cvcCode);
+
                                   widget.onChangedStep(1);
                                 }
                               },
                         child: Text(
-                          'Créer mon Compte'.toUpperCase(),
+                          'Utiliser cette carte'.toUpperCase(),
                           style: TextStyle(color: Colors.white),
                         ),
-                      ),
-                      TextButton(
-                        style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.purple),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Connexion()),
-                          );
-                        },
-                        child: Text('\nMe Connecter'),
                       ),
                     ],
                   ),
