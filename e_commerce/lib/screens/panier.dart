@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-
-
-
-
-
 import 'package:e_commerce/screens/home.dart';
 import 'package:flutter/rendering.dart';
 import 'package:e_commerce/screens/connexion.dart';

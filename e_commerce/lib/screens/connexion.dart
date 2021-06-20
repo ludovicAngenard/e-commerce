@@ -1,14 +1,8 @@
-import 'package:e_commerce/screens/article.dart';
 import 'package:e_commerce/screens/forget_pwd_screen.dart';
 import 'package:e_commerce/screens/home.dart';
 import 'package:e_commerce/screens/panier.dart';
 import 'package:e_commerce/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:e_commerce/screens/article.dart';
-import 'package:e_commerce/screens/connexion.dart';
-import 'package:flutter/material.dart';
-import 'package:e_commerce/screens/home.dart';
 import 'package:flutter/rendering.dart';
 import 'package:e_commerce/screens/favoris.dart';
 import 'dart:math' as math;
